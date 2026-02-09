@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Selo do Resenhador</title>
+
+<style>
+body {
+  background:#040404;
+  color:#ccc;
+  font-family:Georgia;
+  display:flex;
+  justify-content:center;
+  align-items:center;
+  height:100vh;
+  padding:20px;
+}
+
+.box {
+  text-align:center;
+  padding:30px;
+  max-width:500px;
+  width:100%;
+  border:1px solid #222;
+}
+
+input {
+  width:100%;
+  padding:12px;
+  margin-top:20px;
+  background:#0b0b0b;
+  color:#ccc;
+  border:1px solid #333;
+}
+
+.portal {
+  display:none;
+  margin-top:25px;
+}
+
+.portal a {
+  color:#cfa44a;
+  text-decoration:none;
+  font-size:1.1em;
+}
+</style>
+</head>
+
+<body>
+
+<div class="box">
+  <h1>▣ SELO DO RESENHADOR ▣</h1>
+  <p id="msg"></p>
+  <p>Datas me lembram coisas.</p>
+
+  <input id="chave" placeholder="pronuncie o título esquecido">
+
+  <div class="portal" id="portal">
+    <a href="verdade-final.html">atravessar o registro final</a>
+  </div>
+</div>
+
+<script>
+const palavra = "ashiley";
+const msg = document.getElementById("msg");
+const portal = document.getElementById("portal");
+
+function textoHora(){
+  const h = new Date().getHours();
+  if(h < 12) return "https://drive.google.com/drive/u/3/folders/1S4n538AABxb5Sn5R76IV_5_PntA8NbiT";
+  return "https://drive.google.com/drive/folders/1ga0D_KVHLgp0amP0ufD6526oOrYRnjmV?usp=sharing";
+}
+
+msg.innerText = textoHora();
+
+document.getElementById("chave").addEventListener("input", e => {
+  if(e.target.value.toLowerCase() === palavra){
+    msg.innerText = "O Resenhador reconheceu sua presença.";
+    portal.style.display = "block";
+  } else {
+    portal.style.display = "none";
+    msg.innerText = textoHora();
+  }
+});
+</script>
+
+</body>
+</html>
