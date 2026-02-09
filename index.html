@@ -55,7 +55,6 @@ header img {
   margin-top: 10px;
 }
 
-/* ===== ANIMAÇÃO ===== */
 @keyframes respirar {
   0%,100% { opacity: 0.7; }
   50% { opacity: 1; }
@@ -96,12 +95,20 @@ header img {
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
+/* hover desktop */
 @media (hover: hover) {
   .card:hover {
     transform: scale(1.08);
     box-shadow: 0 0 25px rgba(176,0,0,0.35);
     z-index: 10;
   }
+}
+
+/* 👇 ATIVO (mobile clique) */
+.card.ativo {
+  transform: scale(1.08);
+  box-shadow: 0 0 25px rgba(176,0,0,0.35);
+  z-index: 10;
 }
 
 .card h2 {
@@ -204,67 +211,78 @@ header img {
     <h2>Eiji</h2>
     <img src="img/content5.png" class="img-card" alt="">
     <p>NÃO DE UM COPO DE AGUA GELADO PARA ELE.</p>
-    </div>
+  </div>
 
-      <div class="card">
-        <h2>Bush</h2>
-        <img src="img/content6.png" class="img-card" alt="">
-        <p>O arbusto comedor de gente.</p>
-      </div>
-    
-      <div class="card">
-        <h2>A Besta</h2>
-        <img src="img/content7.png" class="img-card" alt="">
-        <p>Não chegue perto da neco.. confie em mim.</p>
-      </div>
-    
-    </main>
-    
-    <!-- TOOLTIP -->
-    <div class="tooltip" id="tooltip">
-      <strong>Elemento:</strong> ???? <br>
-      <strong>Natureza:</strong> ?????<br>
-      <strong>Ameaça:</strong> ?????<br>
-      <strong>Registro:</strong> ????
-    </div>
-    
-    <script>
-    const imagens = document.querySelectorAll('.img-card');
-    const tooltip = document.getElementById('tooltip');
-    
-    const offsetX = 15;
-    const offsetY = -20;
-    
-    imagens.forEach(img => {
-      img.addEventListener('mouseenter', () => {
-        tooltip.style.display = 'block';
-      });
-    
-      img.addEventListener('mouseleave', () => {
-        tooltip.style.display = 'none';
-      });
-    
-      img.addEventListener('mousemove', e => {
-        let x = e.clientX + offsetX;
-        let y = e.clientY + offsetY;
-    
-        const tWidth = tooltip.offsetWidth;
-        const tHeight = tooltip.offsetHeight;
-    
-        if (x + tWidth > window.innerWidth) {
-          x = e.clientX - tWidth - 15;
-        }
-        if (y + tHeight > window.innerHeight) {
-          y = window.innerHeight - tHeight - 10;
-        }
-    
-        tooltip.style.left = x + 'px';
-        tooltip.style.top  = y + 'px';
-      });
+  <div class="card">
+    <h2>Bush</h2>
+    <img src="img/content6.png" class="img-card" alt="">
+    <p>O arbusto comedor de gente.</p>
+  </div>
+
+  <div class="card">
+    <h2>A Besta</h2>
+    <img src="img/content7.png" class="img-card" alt="">
+    <p>Não chegue perto da neco.. confie em mim.</p>
+  </div>
+
+</main>
+
+<div class="tooltip" id="tooltip">
+  <strong>Elemento:</strong> ???? <br>
+  <strong>Natureza:</strong> ?????<br>
+  <strong>Ameaça:</strong> ?????<br>
+  <strong>Registro:</strong> ????
+</div>
+
+<script>
+const imagens = document.querySelectorAll('.img-card');
+const tooltip = document.getElementById('tooltip');
+
+const offsetX = 15;
+const offsetY = -20;
+
+imagens.forEach(img => {
+  img.addEventListener('mouseenter', () => {
+    tooltip.style.display = 'block';
+  });
+
+  img.addEventListener('mouseleave', () => {
+    tooltip.style.display = 'none';
+  });
+
+  img.addEventListener('mousemove', e => {
+    let x = e.clientX + offsetX;
+    let y = e.clientY + offsetY;
+
+    const tWidth = tooltip.offsetWidth;
+    const tHeight = tooltip.offsetHeight;
+
+    if (x + tWidth > window.innerWidth) {
+      x = e.clientX - tWidth - 15;
+    }
+    if (y + tHeight > window.innerHeight) {
+      y = window.innerHeight - tHeight - 10;
+    }
+
+    tooltip.style.left = x + 'px';
+    tooltip.style.top  = y + 'px';
+  });
+});
+
+/* ===== CLIQUE NO MOBILE ===== */
+const cards = document.querySelectorAll('.card');
+
+cards.forEach(card => {
+  card.addEventListener('click', () => {
+    cards.forEach(c => {
+      if (c !== card) c.classList.remove('ativo');
     });
-    </script>
-    
-    <a href="segredo-condicional.html" class="oculto"></a>
-    
-    </body>
-    </html>
+    card.classList.toggle('ativo');
+  });
+});
+</script>
+
+<a href="segredo-condicional.html" class="oculto"></a>
+
+</body>
+</html>
