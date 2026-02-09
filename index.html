@@ -3,204 +3,268 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Bestiário Noturno</title>
+<title>Bestiário do Resenhador Noturno</title>
 
 <style>
-/* ===== RESET ===== */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  font-family: "Georgia", serif;
-}
+* { box-sizing: border-box; }
 
 body {
-  background: radial-gradient(circle at top, #0b0b0b, #000);
-  color: #ddd;
-  padding: 20px;
+  margin: 0;
+  font-family: Georgia, serif;
+  background: linear-gradient(
+    to bottom,
+    #000000 0%,
+    #050505 35%,
+    #111111 70%,
+    #1b1b1b 100%
+  );
+  color: #e0e0e0;
 }
 
 /* ===== HEADER ===== */
 header {
   text-align: center;
-  margin-bottom: 40px;
+  padding: 30px 15px;
+  border-bottom: 2px solid #b00000;
 }
 
-header h1 {
-  font-size: 3rem;
-  letter-spacing: 3px;
-  color: crimson;
-  text-shadow: 0 0 10px rgba(220,20,60,0.6);
-  animation: pulsar 3s infinite;
+header img {
+  max-width: 100%;
+  height: auto;
 }
 
-header p {
+.titulo-resenhador {
+  font-size: 3em;
+  letter-spacing: 6px;
+  text-transform: uppercase;
+  animation: respirar 6s infinite ease-in-out;
+}
+
+.titulo-resenhador::after {
+  content: "";
+  display: block;
+  width: 160px;
+  height: 2px;
+  margin: 14px auto 0;
+  background: linear-gradient(to right, transparent, #b00000, transparent);
+}
+
+.subtitulo-resenhador {
+  color: #9a9a9a;
+  letter-spacing: 2px;
   margin-top: 10px;
-  font-style: italic;
-  opacity: 0.8;
 }
 
-/* animação título */
-@keyframes pulsar {
-  0% { text-shadow: 0 0 5px crimson; }
-  50% { text-shadow: 0 0 20px crimson; }
-  100% { text-shadow: 0 0 5px crimson; }
+/* ===== ANIMAÇÃO ===== */
+@keyframes respirar {
+  0%,100% { opacity: 0.7; }
+  50% { opacity: 1; }
 }
 
 /* ===== GRID ===== */
-.cards-container {
+.container {
+  padding: 40px;
   display: grid;
   grid-template-columns: repeat(2, 1fr);
   gap: 30px;
-  max-width: 1000px;
-  margin: auto;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width: 700px) {
+  .container {
+    grid-template-columns: 1fr;
+    padding: 20px;
+  }
+
+  .titulo-resenhador {
+    font-size: 2.1em;
+    letter-spacing: 3px;
+  }
+
+  .subtitulo-resenhador {
+    font-size: 0.95em;
+    padding: 0 10px;
+  }
 }
 
 /* ===== CARD ===== */
 .card {
-  position: relative;
-  background: #111;
-  border: 1px solid #400;
+  background: linear-gradient(to bottom, #141414, #1f1f1f);
+  border: 1px solid #333;
+  padding: 20px;
   border-radius: 12px;
-  overflow: hidden;
-  transition: transform 0.3s ease;
-  cursor: pointer;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
 
-.card:hover {
-  transform: scale(1.08);
+@media (hover: hover) {
+  .card:hover {
+    transform: scale(1.08);
+    box-shadow: 0 0 25px rgba(176,0,0,0.35);
+    z-index: 10;
+  }
 }
 
-.card img {
+.card h2 {
+  color: #cfa44a;
+}
+
+/* ===== IMAGEM ===== */
+.img-card {
   width: 100%;
-  display: block;
+  height: auto;
+  max-width: 100%;
+  border-radius: 8px;
+  cursor: pointer;
+  margin-bottom: 12px;
 }
 
-/* ===== POPUP ===== */
-.info-popup {
-  position: absolute;
-  top: -15px;
-  left: 105%;
-  width: 220px;
-  background: #0d0d0d;
-  color: #eee;
-  padding: 12px;
-  border: 1px solid crimson;
-  border-radius: 10px;
-  opacity: 0;
-  pointer-events: none;
-  transition: opacity 0.2s ease;
-  z-index: 10;
-  font-size: 0.9rem;
-}
-
-/* PC */
-.card:hover .info-popup {
-  opacity: 1;
-}
-
-/* MOBILE (tap) */
-.card.ativo .info-popup {
-  opacity: 1;
-  pointer-events: auto;
-}
-
-/* ===== QUADRADO VERMELHO ===== */
-#marcador-secreto {
+/* ===== TOOLTIP ===== */
+.tooltip {
   position: fixed;
-  top: 10px;
-  left: 10px;
-  width: 18px;
-  height: 18px;
-  background: crimson;
-  z-index: 9999;
-  opacity: 0.85;
+  background: #0b0b0b;
+  color: #e0e0e0;
+  padding: 12px 15px;
+  border: 1px solid #550000;
+  border-radius: 8px;
+  font-size: 0.9em;
+  pointer-events: none;
+  display: none;
+  box-shadow: 0 0 15px rgba(176,0,0,0.4);
+  z-index: 999;
+  max-width: 260px;
 }
 
-/* ===== MOBILE ===== */
-@media (max-width: 768px) {
-  .cards-container {
-    grid-template-columns: 1fr;
-  }
+/* ===== SEGREDO ===== */
+.secret {
+  position: absolute;
+  width: 20px;
+  height: 20px;
+  bottom: 6px;
+  right: 6px;
+  opacity: 0.1;
+  background-color: #333;
+}
 
-  .info-popup {
-    position: relative;
-    left: 0;
-    top: 10px;
-    width: 100%;
-    margin-top: 10px;
-  }
+.oculto {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 12px;
+  height: 12px;
+  opacity: 0.1;
+  background-color: #9b0e0e;
 }
 </style>
 </head>
 
 <body>
 
-<!-- marcador secreto -->
-<div id="marcador-secreto"></div>
-
 <header>
-  <h1>📜 Bestiário Noturno</h1>
-  <p>Nem toda criatura foi catalogada. Algumas apenas observaram de volta.</p>
+  <img src="img/ChatGPT Image 8 de fev. de 2026, 14_24_56.png" alt="">
+  <h1 class="titulo-resenhador">Bestiário Noturno</h1>
+  <p class="subtitulo-resenhador">
+    Nem toda criatura foi catalogada. Algumas foram apenas observadas.
+  </p>
 </header>
 
-<main class="cards-container">
+<main class="container">
 
-  <!-- CARD 1 -->
   <div class="card">
-    <img src="criatura1.jpg" alt="Criatura 1">
-    <div class="info-popup">
-      <strong>Nome:</strong> Vigia do Breu<br>
-      <strong>Elementos:</strong> Sombra, Silêncio<br>
-      <strong>Comportamento:</strong> Observador<br>
-      <strong>Nível de Risco:</strong> Alto
-    </div>
+    <h2>O MAGICO</h2>
+    <img src="img/content.png" class="img-card" alt="">
+    <p>O Deus de todo o CAOS.</p>
   </div>
 
-  <!-- CARD 2 -->
   <div class="card">
-    <img src="criatura2.jpg" alt="Criatura 2">
-    <div class="info-popup">
-      <strong>Nome:</strong> Arauto da Névoa<br>
-      <strong>Elementos:</strong> Névoa, Medo<br>
-      <strong>Comportamento:</strong> Territorial<br>
-      <strong>Nível de Risco:</strong> Médio
-    </div>
+    <h2>Xerife</h2>
+    <img src="img/content2.png" class="img-card" alt="">
+    <p>Ligada a anotações proibidas, negro.</p>
   </div>
 
-  <!-- CARD 3 -->
   <div class="card">
-    <img src="criatura3.jpg" alt="Criatura 3">
-    <div class="info-popup">
-      <strong>Nome:</strong> Escriba Morto<br>
-      <strong>Elementos:</strong> Conhecimento, Ossos<br>
-      <strong>Comportamento:</strong> Passivo<br>
-      <strong>Nível de Risco:</strong> Baixo
-    </div>
+    <h2>Rupert</h2>
+    <img src="img/content3.png" class="img-card" alt="">
+    <p>Presença silenciosa que acompanha o grupo.</p>
+    <a href="segredo-dragon.html" class="secret"></a>
   </div>
 
-  <!-- CARD 4 -->
   <div class="card">
-    <img src="criatura4.jpg" alt="Criatura 4">
-    <div class="info-popup">
-      <strong>Nome:</strong> O Sem-Rosto<br>
-      <strong>Elementos:</strong> Vazio, Noite<br>
-      <strong>Comportamento:</strong> Imprevisível<br>
-      <strong>Nível de Risco:</strong> Extremo
-    </div>
+    <h2>O imperador</h2>
+    <img src="img/ChatGPT Image 6 de fev. de 2026, 16_55_56.png" class="img-card" alt="">
+    <p>Aquele que vai conquistar o mundo.</p>
   </div>
 
-</main>
+  <div class="card">
+    <h2>indio</h2>
+    <img src="img/content4.png" class="img-card" alt="">
+    <p>ele é um indio, não tem oque fala.</p>
+  </div>
 
-<script>
-/* mobile: tap para abrir */
-document.querySelectorAll('.card').forEach(card => {
-  card.addEventListener('click', () => {
-    card.classList.toggle('ativo');
-  });
-});
-</script>
+  <div class="card">
+    <h2>Eiji</h2>
+    <img src="img/content5.png" class="img-card" alt="">
+    <p>NÃO DE UM COPO DE AGUA GELADO PARA ELE.</p>
+    </div>
 
-</body>
-</html>
+      <div class="card">
+        <h2>Bush</h2>
+        <img src="img/content6.png" class="img-card" alt="">
+        <p>O arbusto comedor de gente.</p>
+      </div>
+    
+      <div class="card">
+        <h2>A Besta</h2>
+        <img src="img/content7.png" class="img-card" alt="">
+        <p>Não chegue perto da neco.. confie em mim.</p>
+      </div>
+    
+    </main>
+    
+    <!-- TOOLTIP -->
+    <div class="tooltip" id="tooltip">
+      <strong>Elemento:</strong> ???? <br>
+      <strong>Natureza:</strong> ?????<br>
+      <strong>Ameaça:</strong> ?????<br>
+      <strong>Registro:</strong> ????
+    </div>
+    
+    <script>
+    const imagens = document.querySelectorAll('.img-card');
+    const tooltip = document.getElementById('tooltip');
+    
+    const offsetX = 15;
+    const offsetY = -20;
+    
+    imagens.forEach(img => {
+      img.addEventListener('mouseenter', () => {
+        tooltip.style.display = 'block';
+      });
+    
+      img.addEventListener('mouseleave', () => {
+        tooltip.style.display = 'none';
+      });
+    
+      img.addEventListener('mousemove', e => {
+        let x = e.clientX + offsetX;
+        let y = e.clientY + offsetY;
+    
+        const tWidth = tooltip.offsetWidth;
+        const tHeight = tooltip.offsetHeight;
+    
+        if (x + tWidth > window.innerWidth) {
+          x = e.clientX - tWidth - 15;
+        }
+        if (y + tHeight > window.innerHeight) {
+          y = window.innerHeight - tHeight - 10;
+        }
+    
+        tooltip.style.left = x + 'px';
+        tooltip.style.top  = y + 'px';
+      });
+    });
+    </script>
+    
+    <a href="segredo-condicional.html" class="oculto"></a>
+    
+    </body>
+    </html>
