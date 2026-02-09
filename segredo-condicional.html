@@ -23,7 +23,13 @@ body {
   max-width:500px;
   width:100%;
   border:1px solid #222;
+
+  /* 🔧 correção de overflow no mobile */
+  overflow-wrap: break-word;
+  word-wrap: break-word;
+  word-break: break-word;
 }
+
 
 input {
   width:100%;
@@ -68,8 +74,8 @@ const portal = document.getElementById("portal");
 
 function textoHora(){
   const h = new Date().getHours();
-  if(h < 12) return "https://drive.google.com/drive/u/3/folders/1S4n538AABxb5Sn5R76IV_5_PntA8NbiT";
-  return "https://drive.google.com/drive/folders/1ga0D_KVHLgp0amP0ufD6526oOrYRnjmV?usp=sharing";
+  if(h < 12) return "https://docs.google.com/forms/d/e/1FAIpQLSct7bkjgBhgM5CCj1jmAAtI92UgVeHyz_ARVBox5YhTil15Mw/viewform";
+  return "https://docs.google.com/forms/d/e/1FAIpQLSd8niivcWp1b1Fg4jRB6PAbWI-LmWHGaKwiozm2uIEARppcrA/viewform?fbzx=-8499644902263765232";
 }
 
 msg.innerText = textoHora();
