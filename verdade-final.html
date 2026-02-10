@@ -6,46 +6,164 @@
 <title>Registro Final</title>
 
 <style>
-body {
-  background:black;
-  color:#a83232;
-  font-family:Georgia;
+:root{
+  --vermelho-escuro:#7a1f1f;
+  --vermelho-sangue:#a83232;
+  --fundo:#030303;
+  --painel:#0b0b0b;
+  --borda:#1f1f1f;
+}
+
+*{
+  box-sizing:border-box;
+}
+
+body{
+  margin:0;
+  background:
+    radial-gradient(circle at top, #080808, #020202 60%),
+    repeating-linear-gradient(
+      0deg,
+      rgba(255,255,255,0.015),
+      rgba(255,255,255,0.015) 1px,
+      transparent 1px,
+      transparent 3px
+    );
+  color:var(--vermelho-sangue);
+  font-family:Georgia, serif;
   display:flex;
   justify-content:center;
-  align-items:center;
-  height:100vh;
+  padding:40px 20px;
+}
+
+/* ===== CONTAINER PRINCIPAL ===== */
+.registro{
+  width:100%;
+  max-width:800px;
+  background:linear-gradient(to bottom, #0a0a0a, #050505);
+  border:1px solid var(--borda);
+  box-shadow:
+    0 0 40px rgba(168,50,50,0.15),
+    inset 0 0 30px rgba(0,0,0,0.8);
+  padding:40px 30px;
+}
+
+/* ===== TÍTULO ===== */
+.registro::before{
+  content:"✠ REGISTRO FINAL ✠";
+  display:block;
   text-align:center;
-  padding:20px;
+  letter-spacing:6px;
+  color:#5e1515;
+  font-size:0.85em;
+  margin-bottom:35px;
+}
+
+/* ===== ENTRADAS ===== */
+.entrada{
+  margin-bottom:50px;
+  padding-bottom:35px;
+  border-bottom:1px dashed #2a2a2a;
+}
+
+.entrada h1{
+  font-size:1.4em;
+  color:#c44;
+  letter-spacing:3px;
+  margin-bottom:15px;
+}
+
+.entrada p{
+  line-height:1.7;
+  color:#b44;
+  margin:10px 0;
+}
+
+/* ===== ÁREA PARA CONTINUAR ESCREVENDO ===== */
+.continuar{
+  margin-top:60px;
+  padding:30px;
+  border:1px solid #222;
+  background:linear-gradient(to bottom, #060606, #020202);
+}
+
+.continuar h2{
+  font-size:1.1em;
+  letter-spacing:4px;
+  color:#661111;
+  margin-bottom:15px;
+}
+
+.continuar p{
+  color:#444;
+  font-style:italic;
+}
+
+/* ===== MOBILE ===== */
+@media (max-width:600px){
+  .registro{
+    padding:30px 20px;
+  }
+
+  .entrada h1{
+    font-size:1.2em;
+  }
 }
 </style>
 </head>
 
 <body>
 
-<div>
-  <h1>21/01/2020</h1>
-  <p>
-  hoje faz 5 anos que estamos torturando o lenhador, isso é incrivel hahaha
-  </p>
-  <p>
-  depois de explodir a cabeça da esposa dele na frente dele, ele nunca mais falou e ficou completamente louco, começamos a dopar e injetar soro na aveia dele, tampamos a boca dele para ele não cometer suicidio. <br> Esse desgraçado arrancou minha mão naquela noite e eu jurei torturalo e ganhar toda a grana da deepweeb em cima dele, ele provavelmente ja esqueceu tudo, ele se tornou um animal.
-  </p>
-</div>
+<div class="registro">
 
-<div>
-  <h1>23/06/2025</h1>
+  <div class="entrada">
+    <h1>21/01/2020</h1>
+    <p>
+      hoje faz 5 anos que estamos torturando o lenhador, isso é incrivel hahaha
+    </p>
+    <p>
+      depois de explodir a cabeça da esposa dele na frente dele, ele nunca mais falou e ficou completamente louco, começamos a dopar e injetar soro na aveia dele, tampamos a boca dele para ele não cometer suicidio. <br>
+      Esse desgraçado arrancou minha mão naquela noite e eu jurei torturalo e ganhar toda a grana da deepweeb em cima dele, ele provavelmente ja esqueceu tudo, ele se tornou um animal.
+    </p>
+  </div>
+
+  <div class="entrada">
+    <h1>23/06/2025</h1>
     <p>
       MERDA, ELE CONSEGUIU SE SOLTA, COMO??? COMO?????? ELE PEGOU UM METAL QUE ESTAVA NA SALA DELE E EXPLODIU O CRANIO, ELE VAI VIR ME MATAR, ELE VAI VIR ME MATAR, ELE VAI VIR ME MATAR
     </p>
     <p>
       MERDA ELE QUEBROU A PORTA. NÃO NÃ-----
     </p>
+  </div>
+
+  <div class="entrada">
+    <h1>24/06/2025</h1>
+    <p>
+      um homem entrou em um hospital completamente ensanguentado, segurando um machado. Ele não dizia uma palavra, apenas olhava fixamente para os médicos e enfermeiros. A polícia foi chamada imediatamente, mas antes que chegassem, o homem desapareceu misteriosamente, deixando apenas marcas de sangue pelo chão.
+      <br>
+      ele apenas pegou os itens deixados pelos os policias no hospital, os mesmo itens de uma garota chamada "ashiley", este era um colar com sua foto.
+    </p>
+  </div>
   
-</div>
-<div>
-  <h1>25/06/2025</h1>
-  <p>um homem foi visto com um machado e ensanguentado, logo quando os policias iam iniciar fogo ele foi sugado por um "portal"...</p>
-  <p> perto dali foi encontrado uma casa com 2 corpos, e varias covas, o principal suspeito é esse homem do machado, apelidado de "resenhador"</p>
+  <div class="entrada">
+    <h1>25/06/2025</h1>
+    <p>
+      um homem foi visto com um machado e ensanguentado, logo quando os policias iam iniciar fogo ele foi sugado por um "portal"...
+    </p>
+    <p>
+      perto dali foi encontrado uma casa com 2 corpos, e varias covas, o principal suspeito é esse homem do machado, apelidado de "resenhador"
+    </p>
+  </div> 
+
+  <!-- 🔥 ESPAÇO PARA VOCÊ CONTINUAR -->
+  <div class="continuar">
+    <h2>REGISTROS NÃO CATALOGADOS</h2>
+    <p>
+      (escreva aqui novos relatos, datas, confissões ou fragmentos)
+    </p>
+  </div>
+
 </div>
 
 </body>
